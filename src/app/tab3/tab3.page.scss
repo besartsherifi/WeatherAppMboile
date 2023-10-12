@@ -1,0 +1,45 @@
+ion-app {
+  width: 100%;
+  height: 100%;
+  --blue-1: #f1fba9;
+  --blue-2: #4c52ad;
+  --yellow-1: #fac742;
+  --white: #fff;
+  --grey-1: #ededed;
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --shadow-light: rgba(255, 255, 255, 0.1);
+}
+
+ion-searchbar.search {
+  padding: 5px 10px 5px 10px;
+  height: 5rem;
+}
+
+ion-card {
+  height: auto;
+  width: 95%;
+}
+
+ion-img.upper-data-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+ion-card-title.location {
+  color: var(--white);
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 599;
+}
+
+ion-card-title.temperature {
+  margin-top: 60px;
+  color: var(--white);
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 599;
+}

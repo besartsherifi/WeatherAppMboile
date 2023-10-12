@@ -1,17 +1,118 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-app mode="ios">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title>WeatherApp</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-</ion-content>
+  <ion-content>
+    <ion-card *ngIf="weatherData">
+      <ion-card-header class="upper-data">
+        <ion-img class="upper-data-image"
+          *ngIf="weatherData.current.temp_c > 15"
+          src="../assets/media/hot.jpg"
+        ></ion-img>
+        <ion-img class="upper-data-image"
+          *ngIf="weatherData.current.temp_c < 15"
+          src="../assets/media/cold.jpg"
+        ></ion-img>
+        <ion-card-content class="weather-data">
+          <ion-card-content class="location">
+            {{ weatherData.location.name }}, {{ weatherData.location.country }}
+          </ion-card-content>
+          <ion-card-content class="temperature">{{ weatherData.current.temp_c }}°C</ion-card-content>
+          <ion-card-content class="location">
+            {{ weatherData.forecast.forecastday[0].date }}
+          </ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-card-content class="location">
+                  Sunrise: {{ weatherData.forecast.forecastday[0].astro.sunrise }}
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="location">
+                  Sunset: {{ weatherData.forecast.forecastday[0].astro.sunset }}
+                </ion-card-content>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card-header>
+      <ion-card>
+        <ion-card-content class="more-info-label">More Information</ion-card-content>
+        <ion-card-header class="lower-data">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/min.png"></ion-img>
+                    <span>min</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">
+                    {{ weatherData.forecast.forecastday[0].day.mintemp_c }}°C
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/max.png"></ion-img>
+                    <span>max</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">
+                    {{ weatherData.forecast.forecastday[0].day.maxtemp_c }}°C
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/humidity.png"></ion-img>
+                    <span>humidity</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">{{ weatherData.current.humidity }}%</ion-card-content>
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/wind.png"></ion-img>
+                    <span>wind</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">
+                    {{ weatherData.current.wind_kph }} km/h
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/uv.png"></ion-img>
+                    <span>UV Index</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">{{ weatherData.current.uv }}</ion-card-content>
+                </ion-card-content>
+              </ion-col>
+              <ion-col>
+                <ion-card-content class="info-block">
+                  <ion-card-content class="info-block-label">
+                    <ion-img class="info-block-label" src="../assets/media/rain.png"></ion-img>
+                    <span>chance of rain</span>
+                  </ion-card-content>
+                  <ion-card-content class="info-block-value">
+                    {{
+                      weatherData.forecast.forecastday[0].day.daily_chance_of_rain
+                    }}%
+                  </ion-card-content>
+                </ion-card-content>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-header>
+      </ion-card>
+    </ion-card>
+  </ion-content>
+</ion-app>
